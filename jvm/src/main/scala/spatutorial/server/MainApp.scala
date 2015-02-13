@@ -24,12 +24,12 @@ object MainApp extends SimpleRoutingApp {
 
     startServer("0.0.0.0", port = port) {
       get {
-        pathSingleSlash {
-          // serve the main page
-          getFromResource("web/index.html")
-        } ~
-        // serve other requests directly from the resource directory
+        // Try serving from "web", if not serve the index.html page to work with pretty urls
+        {
           getFromResourceDirectory("web")
+        } ~ {
+          getFromResource("web/index.html")
+        }
       } ~ post {
         path("api" / Segments) { s =>
           extract(_.request.entity.asString) { e =>

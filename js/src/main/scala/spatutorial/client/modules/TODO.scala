@@ -42,7 +42,7 @@ object TODO {
       .build
 
     // register the component and store location
-    val todo: Loc = register(location("#todo", TODOComponent))
+    val todo: Loc = register(location("todo", TODOComponent))
 
     // register it for the Main Menu
     registerMenu(RouterMenuItem("Todo", Icon.check, todo))

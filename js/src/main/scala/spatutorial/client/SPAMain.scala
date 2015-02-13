@@ -12,7 +12,7 @@ import scala.scalajs.js.annotation.JSExport
 object SPAMain extends JSApp {
   @JSExport
   def main(): Unit = {
-    val baseUrl = BaseUrl(dom.window.location.href.takeWhile(_ != '#'))
+    val baseUrl = BaseUrl.fromWindowOrigin + "/"
     val router = MainRouter.router(baseUrl)
 
     React.render(router(), dom.document.body)
